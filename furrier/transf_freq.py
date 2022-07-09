@@ -3,7 +3,7 @@ import numpy as np
 import cv2
 from matplotlib import pyplot as plt
 
-fist_box = cv2.imread("./imgs/img7.png", 0)
+fist_box = cv2.imread("./imgs/img6.jpeg", 0)
 
 # Chance image for real numbers
 

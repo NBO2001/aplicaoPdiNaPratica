@@ -16,15 +16,19 @@ def createFilter(shape,center,radius,lpType = 2, n=2):
 
     lpFilter = np.exp(-d/(2*pow(radius,2.0)))
 
+    for i in range(rows):
+        for j in range(colluns):
+            lpFilter[i][j] = 1 if lpFilter[i][j] == 0 else 0
+  
     return lpFilter 
 
 
-box_img = cv2.imread("./imgs/img7.png",0)
+box_img = cv2.imread("./imgs/img6.jpeg",0)
 
 rows, colls = box_img.shape[:2]
 x,y = int(colls/2), int(rows/2)
 
-filter = createFilter(box_img.shape,(x,y),10,2)
+filter = createFilter(box_img.shape,(x,y),0.6,2)
 
 img_float32 = np.float32(box_img)
 
@@ -40,12 +44,14 @@ invert_furrier = np.fft.ifft2(img_filtered)
 
 img_f = np.abs(invert_furrier)
 img_f -= img_f.min()
-img_f = img_f*255/ img_f.max()
+
+img_f = img_f*255/ (img_f.max() if img_f.max() > 0 else 1 )
+
 img_f = img_f.astype(np.uint8)
 
-cv2.imwrite("./output/Imagem_Original_LP.png", box_img)
-cv2.imwrite("./output/Filtro_LP.png", filter)
-cv2.imwrite("./output/Image_Filtered_LP.png", img_f)
+cv2.imwrite("./output/Imagem_Original_HP.png", box_img)
+cv2.imwrite("./output/Filtro_HP.png", filter)
+cv2.imwrite("./output/Image_Filtered_HP.png", img_f)
 
 
 
