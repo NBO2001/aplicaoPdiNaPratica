@@ -2,7 +2,6 @@ import numpy as np
 import cv2
 from matplotlib import pyplot as plt
 
-
 def createFilter(shape,center,radius,lpType = 2, n=2):
     
     rows, colluns = shape[:2]

@@ -19,7 +19,7 @@ def createFilter(shape,center,radius,lpType = 2, n=2):
     return lpFilter 
 
 
-box_img = cv2.imread("./imgs/img7.png",0)
+box_img = cv2.imread("./imgs/img6.jpeg",0)
 
 rows, colls = box_img.shape[:2]
 x,y = int(colls/2), int(rows/2)
